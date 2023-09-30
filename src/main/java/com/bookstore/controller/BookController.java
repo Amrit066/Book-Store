@@ -41,6 +41,16 @@ public class BookController {
 		List<Book> booklist = bookservice.showAllBook();
 		return booklist.isEmpty()?Collections.emptyList():booklist;
 	}
+	
+	// Implementation to get info related to specific books
+		// Based on title
+		@GetMapping("/gettAllBook/{title}")
+		public Book getBook(@PathVariable("title") String title){
+			
+			System.out.println("Retreiving Book Info with title -"+title);
+			Book b = bookservice.showBook("title",title);
+			return b;
+		}
 
 }
 
