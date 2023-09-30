@@ -55,7 +55,7 @@ public class BookController {
 		@GetMapping("/getBookByAuthor/{author}")
 		public List<Book> getBookByAuthor(@PathVariable("author") String author){
 			
-			System.out.println("Retreiving Book Info with title -"+author);
+			System.out.println("Retreiving Book Info with autor -"+author);
 			List<Book> booklist = bookservice.showBook("author",author);
 			return booklist.isEmpty()?Collections.emptyList():booklist;
 		}
@@ -63,10 +63,17 @@ public class BookController {
 		@GetMapping("/getBookByPrice/{price}")
 		public List<Book> getBookByPrice(@PathVariable("price") String price){
 					
-			System.out.println("Retreiving Book Info with title -"+price);
-			List<Book> booklist = bookservice.showBook("author",Integer.parseInt(price));
+			System.out.println("Retreiving Book Info with price -"+price);
+			List<Book> booklist = bookservice.showBook("price",price);
 			return booklist.isEmpty()?Collections.emptyList():booklist;
 		}
+		
+	// Implementation related to add books
+		@PostMapping("/addNewBook")
+		public Book addNewBook(@RequestBody Book b) {
+			return bookservice.addNewBook(b);
+		}
+		
 				
 
 }
