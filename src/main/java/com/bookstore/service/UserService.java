@@ -3,7 +3,12 @@ package com.bookstore.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
 
+
+
+import com.bookstore.dao.UserRepository;
 import com.bookstore.model.User;
 
 import java.util.List;
@@ -24,7 +29,8 @@ public class UserService {
     }
 
     public Optional<User> getUserById(Long userId) {
-        return userRepository.findById(userId);
+    	int id = Math.toIntExact(userId);    	
+    	return userRepository.findById(id);
     }
 
     public User createUser(User user) {
@@ -32,7 +38,8 @@ public class UserService {
     }
 
     public User updateUser(Long userId, User updatedUser) {
-        Optional<User> existingUser = userRepository.findById(userId);
+    	int id = Math.toIntExact(userId);    
+        Optional<User> existingUser = userRepository.findById(id);
         if (existingUser.isPresent()) {
             User user = existingUser.get();
             user.setName(updatedUser.getName());
@@ -45,6 +52,7 @@ public class UserService {
     }
 
     public void deleteUser(Long userId) {
-        userRepository.deleteById(userId);
+    	int id = Math.toIntExact(userId);    
+        userRepository.deleteById(id);
     }
 }
