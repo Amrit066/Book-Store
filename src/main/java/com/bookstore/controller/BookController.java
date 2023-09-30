@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.employee.model.Employee;
+
 
 
 // Controller Implementation
@@ -79,7 +81,11 @@ public class BookController {
 			return bookservice.updateBook(id, b);
 		}		
 		
-				
+	// Implementation related to delete specific book	
+		@DeleteMapping("/deleteBook/{id}")
+		public List<Book> deleteBook(@PathVariable("id") int id){
+			return bookservice.deleteBook(id);
+		}
 
 }
 
