@@ -39,25 +39,30 @@ public class BookController {
 	public List<Book> getAllBook(){
 		
 		System.out.println("Retreiving All Book Info.....");
-		List<Book> booklist = bookservice.showAllBook();
+		List<Book> booklist = bookservice.getAllBooks();
 		return booklist.isEmpty()?Collections.emptyList():booklist;
 	}
 	
 	// Implementation to get info related to specific books
+		// Based on id
+		@PutMapping("/getBookById/{id}")
+		public Book getBookById(@PathVariable("id") int id) {
+			return bookservice.getBookById(id);
+		}
 		// Based on title
 		@GetMapping("/getBookByTitle/{title}")
-		public Book getBookByTitle(@PathVariable("title") String title){
+		public List<Book> getBookByTitle(@PathVariable("title") String title){
 			
 			System.out.println("Retreiving Book Info with title -"+title);
-			Book b = bookservice.showBook("title",title);
-			return b;
+			List<Book> booklist = bookservice.searchBooks("title",title);
+			return booklist.isEmpty()?Collections.emptyList():booklist;
 		}
 		// Based on author
 		@GetMapping("/getBookByAuthor/{author}")
 		public List<Book> getBookByAuthor(@PathVariable("author") String author){
 			
 			System.out.println("Retreiving Book Info with autor -"+author);
-			List<Book> booklist = bookservice.showBook("author",author);
+			List<Book> booklist = bookservice.searchBooks("author",author);
 			return booklist.isEmpty()?Collections.emptyList():booklist;
 		}
 		// Based on author
@@ -65,14 +70,14 @@ public class BookController {
 		public List<Book> getBookByPrice(@PathVariable("price") String price){
 					
 			System.out.println("Retreiving Book Info with price -"+price);
-			List<Book> booklist = bookservice.showBook("price",price);
+			List<Book> booklist = bookservice.searchBooks("price",price);
 			return booklist.isEmpty()?Collections.emptyList():booklist;
 		}
 		
 	// Implementation related to add books
 		@PostMapping("/addNewBook")
 		public Book addNewBook(@RequestBody Book b) {
-			return bookservice.addNewBook(b);
+			return bookservice.addBook(b);
 		}
 		
 	// Implementation related to update book details
