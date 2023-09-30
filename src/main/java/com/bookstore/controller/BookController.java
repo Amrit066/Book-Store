@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.employee.model.Employee;
 
 
 // Controller Implementation
@@ -73,6 +72,12 @@ public class BookController {
 		public Book addNewBook(@RequestBody Book b) {
 			return bookservice.addNewBook(b);
 		}
+		
+	// Implementation related to update book details
+		@PutMapping("/updateBook/{id}")
+		public Book updateBook(@PathVariable("id") int id,@RequestBody Book b) {
+			return bookservice.updateBook(id, b);
+		}		
 		
 				
 
