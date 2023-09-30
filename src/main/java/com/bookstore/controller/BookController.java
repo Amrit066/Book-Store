@@ -53,11 +53,20 @@ public class BookController {
 		}
 		// Based on author
 		@GetMapping("/getBookByAuthor/{author}")
-		public Book getBookByAuthor(@PathVariable("author") String author){
+		public List<Book> getBookByAuthor(@PathVariable("author") String author){
 			
 			System.out.println("Retreiving Book Info with title -"+author);
-			Book b = bookservice.showBook("author",author);
-			return b;
+			List<Book> booklist = bookservice.showBook("author",author);
+			return booklist.isEmpty()?Collections.emptyList():booklist;
+		}
+		// Based on author
+		@GetMapping("/getBookByPrice/{price}")
+		public List<Book> getBookByPrice(@PathVariable("price") String price){
+					
+			System.out.println("Retreiving Book Info with title -"+price);
+			List<Book> booklist = bookservice.showBook("author",Integer.parseInt(price));
+			return booklist.isEmpty()?Collections.emptyList():booklist;
+		}
 				
 
 }
