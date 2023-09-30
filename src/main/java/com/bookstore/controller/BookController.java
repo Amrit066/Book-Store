@@ -34,7 +34,7 @@ public class BookController {
 	
 	
 	// Implementation to get info related to all books
-	@GetMapping("/gettAllBook")
+	@GetMapping("/getAllBook")
 	public List<Book> getAllBook(){
 		
 		System.out.println("Retreiving All Book Info.....");
@@ -44,13 +44,21 @@ public class BookController {
 	
 	// Implementation to get info related to specific books
 		// Based on title
-		@GetMapping("/gettAllBook/{title}")
-		public Book getBook(@PathVariable("title") String title){
+		@GetMapping("/getBookByTitle/{title}")
+		public Book getBookByTitle(@PathVariable("title") String title){
 			
 			System.out.println("Retreiving Book Info with title -"+title);
 			Book b = bookservice.showBook("title",title);
 			return b;
 		}
+		// Based on author
+		@GetMapping("/getBookByAuthor/{author}")
+		public Book getBookByAuthor(@PathVariable("author") String author){
+			
+			System.out.println("Retreiving Book Info with title -"+author);
+			Book b = bookservice.showBook("author",author);
+			return b;
+				
 
 }
 
