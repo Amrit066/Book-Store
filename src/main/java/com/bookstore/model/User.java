@@ -1,6 +1,8 @@
 package com.bookstore.model;
 
 import jakarta.persistence.*;
+
+//These imports are deprecated, Jayanth has added dependency for it.
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -15,7 +17,8 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    //Used validation for name,email,password.
     @NotBlank(message = "Name is required")
     @Size(max = 255, message = "Name should not exceed 255 characters")
     private String name;
