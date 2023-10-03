@@ -1,8 +1,10 @@
 package com.bookstore.controller;
 
+import java.util.Collections;
+
 // Packages
 
-import java.util.Collections;
+//import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.employee.model.Employee;
+import com.bookstore.model.Book;
+import com.bookstore.service.BookService;
 
 
 
@@ -31,7 +34,7 @@ public class BookController {
 	
 	//Connecting to book service interface
 	@Autowired
-	Book bookservice;
+	BookService bookservice;
 	
 	
 	// Implementation to get info related to all books
@@ -45,7 +48,7 @@ public class BookController {
 	
 	// Implementation to get info related to specific books
 		// Based on id
-		@PutMapping("/getBookById/{id}")
+		@GetMapping("/getBookById/{id}")
 		public Book getBookById(@PathVariable("id") int id) {
 			return bookservice.getBookById(id);
 		}
@@ -91,6 +94,7 @@ public class BookController {
 		public List<Book> deleteBook(@PathVariable("id") int id){
 			return bookservice.deleteBook(id);
 		}
+		
 
 }
 
