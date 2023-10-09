@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bookstore.model.Book;
 import com.bookstore.service.BookService;
 
+import io.swagger.annotations.Api;
+
 
 
 // Controller Implementation
@@ -30,6 +32,7 @@ import com.bookstore.service.BookService;
 //@CrossOrigin(origins = "http://localhost:8093")
 @RestController
 @RequestMapping("/bookinfo")
+//@Api(value="Book Store")
 public class BookController {
 	
 	//Connecting to book service interface
